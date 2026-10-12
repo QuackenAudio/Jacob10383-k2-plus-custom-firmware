@@ -24,3 +24,25 @@ This is an independent project and is not affiliated with Creality.
 For installation, setup, calibration, OrcaSlicer configuration, updates, and
 reference material, see the
 [documentation](https://jacob10383.github.io/k2-plus-custom-firmware/).
+
+
+
+
+
+Adding the Nozzle Camera After Install - Cam shows up as <your IP Address>:8081/stream
+
+SSH Into K2 Printer
+
+cat > /etc/ustreamer/nozcam.env <<'EOF'
+VIDEO_DEV=/dev/v4l/by-id/usb-XWF-1080p6_Camera_XWF-1080p6_Camera_202403191545002-video-index0
+USTREAMER_PORT=8081
+USTREAMER_RESOLUTION=1600x1200
+USTREAMER_FPS=5
+EOF
+
+systemctl enable --now 'ustreamer@nozcam.service'
+
+
+
+
+
